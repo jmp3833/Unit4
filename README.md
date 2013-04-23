@@ -24,3 +24,7 @@ We're sure it's all because of this "Zach" guy...
 Java is evil, but we'll manage.
 
 This is a lot of information to put into one haiku.
+
+Pancakes
+----------
+I enjoy them.
