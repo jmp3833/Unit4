@@ -27,4 +27,8 @@ This is a lot of information to put into one haiku.
 
 Pancakes
 ----------
+
 I enjoy them.
+
+Pancakes are the suryup of live. This makes sryup-covered pancakes both
+recursive and meta.
