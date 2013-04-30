@@ -8,6 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 
+import com.std.model.appointment.RefAppointment;
+
 public class AppointmentLabel extends JPanel {
 	
 	private RefAppointment ref;
@@ -24,10 +26,10 @@ public class AppointmentLabel extends JPanel {
 		body.setOpaque(false);
 		body.setFont(body.getFont().deriveFont(12f));
 
-		String bodyText = "Location: " + r.getLoctation() + "\n" +
+		String bodyText = "Location: " + r.getLocation() + "\n" +
 							"Description: " + r.getDescription() + "\n" +
-							"Start Time: " + FORMAT.format(r.getStartTime()) + "\n"
-							+ "End Time: " + FORMAT.format(r.getEndTime());
+							"Start Time: " + FORMAT.format(r.getStartDate()) + "\n"
+							+ "End Time: " + FORMAT.format(r.getEndDate());
 		
 		body.setText(bodyText);
 		
@@ -43,5 +45,6 @@ public class AppointmentLabel extends JPanel {
 	public RefAppointment getAppointment() {
 		return ref;
 	}
+
 
 }

@@ -8,6 +8,8 @@ import java.awt.event.MouseListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Set;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -15,6 +17,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JToggleButton;
 import javax.swing.border.EtchedBorder;
+
+import com.std.model.appointment.RefAppointment;
 
 public class ToggleDayBlock extends JToggleButton {
 
@@ -60,7 +64,7 @@ public class ToggleDayBlock extends JToggleButton {
 		
 		HashMap<RefAppointment, AppointmentBlock> addedAppointments = new HashMap<RefAppointment, AppointmentBlock>();
 
-		
+		/** Commented out to make a workable build - Jmp3833
 		for (RefAppointment app : refSet) {
 			boolean hasAdded = false;
 			//See if it conflicts with any other appointment
@@ -108,6 +112,8 @@ public class ToggleDayBlock extends JToggleButton {
 		f.setSize(600,600);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+	*/
 	}
+	
 
 }
