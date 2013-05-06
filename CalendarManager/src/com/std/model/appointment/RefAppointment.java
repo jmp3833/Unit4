@@ -40,12 +40,13 @@ import com.std.util.range.DateRange;
  * @author xxx
  * 
  */
-public class RefAppointment extends java.util.Observable implements Serializable {
+public class RefAppointment extends AppointmentTemplate {
 
 	/**
 	 * UID Used for Serializable
 	 */
 	private static final long serialVersionUID = -4331942306839501945L;
+	
 	/**
 	 * compares two Appointments by their start dates
 	 */

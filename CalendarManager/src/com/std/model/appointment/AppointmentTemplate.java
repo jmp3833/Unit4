@@ -323,4 +323,8 @@ public class AppointmentTemplate extends java.util.Observable implements Seriali
 		
 		this.notifyObservers();
 	}
+
+	public AppointmentTemplate() {
+		// TODO Auto-generated constructor stub
+	}
 }
