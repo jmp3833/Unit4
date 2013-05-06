@@ -7,9 +7,9 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import javax.swing.JLabel;
+//import javax.swing.JLabel;
 
-import com.std.controller.dialog.DatePanel;
+//import com.std.controller.dialog.DatePanel;
 import com.std.model.pattern.DayOfWeekPattern;
 import com.std.model.pattern.NDaysPattern;
 import com.std.model.pattern.RecurrencePattern;
