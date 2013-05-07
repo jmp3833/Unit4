@@ -19,6 +19,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import com.std.model.appointment.AppointmentUtility;
+import com.std.model.appointment.RecurringAppointment;
 import com.std.model.appointment.RefAppointment;
 import com.std.util.GroupLayoutUtility;
 
@@ -32,6 +33,9 @@ import com.std.util.GroupLayoutUtility;
  */
 
 public class AppointmentPanel extends JToggleButton {
+
+	private static final long serialVersionUID = 1L;
+
 	private static final SimpleDateFormat FORMAT = new SimpleDateFormat("EEE, d MMM yyyy 'at' h:mm aa");
 	
 	/**
@@ -92,7 +96,7 @@ public class AppointmentPanel extends JToggleButton {
 			startDateField.setText(FORMAT.format(appt.getStartDate()));
 			endDateField.setText(FORMAT.format(appt.getEndDate()));
 			durationField.setText(AppointmentUtility.getDurationDescription(appt.getDuration()));
-			recurrenceField.setText(AppointmentUtility.getPatternDescription(appt.getPattern()));
+			recurrenceField.setText(RecurringAppointment.createPatternText(appt.getPattern()));
 			descriptionField.setText(appt.getDescription());
 			
 			editSingleAppt.setEnabled(appt.getPattern() != null);

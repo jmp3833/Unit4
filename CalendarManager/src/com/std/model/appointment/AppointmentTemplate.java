@@ -127,6 +127,7 @@ public class AppointmentTemplate extends java.util.Observable implements Seriali
 		if(!title.equals(this.title))
 			this.setChanged();
 		this.title = title;
+		this.notifyObservers();
 	}
 
 	/**
@@ -139,7 +140,7 @@ public class AppointmentTemplate extends java.util.Observable implements Seriali
 	 */
 	public void setTitle(String title) {
 		internalSetTitle(title);
-		this.notifyObservers();
+		
 	}
 
 	/**

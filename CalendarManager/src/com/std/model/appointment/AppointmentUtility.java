@@ -1,18 +1,11 @@
 package com.std.model.appointment;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-//import javax.swing.JLabel;
-
-//import com.std.controller.dialog.DatePanel;
-import com.std.model.pattern.DayOfWeekPattern;
-import com.std.model.pattern.NDaysPattern;
-import com.std.model.pattern.RecurrencePattern;
 import com.std.util.range.DateRange;
 
 /**
@@ -21,11 +14,7 @@ import com.std.util.range.DateRange;
  * @author xxx
  */
 public class AppointmentUtility {
-	
-	private static final SimpleDateFormat FORMAT = new SimpleDateFormat("EEE, d MMM yyyy 'at' h:mm aa");
-	
-	public static final String NO_RECUR = "does not recur";
-	
+
 	/**
 	 * Returns a sorted set of the appointments in set that 
 	 * are at least partially contained by range
@@ -77,58 +66,6 @@ public class AppointmentUtility {
 		return ret;
 	}
 	
-	public static String getPatternDescription(RecurrencePattern pattern) {
-		// start with a blank string
-		String text = "";
-		
-		if(pattern != null) {
-			
-			if(pattern instanceof NDaysPattern) {
-				
-				// generate the description string for NDaysPattern
-				NDaysPattern ptt = (NDaysPattern)pattern;
-				if(ptt.instanceEvery() == 1)
-					text = "recurs every day";
-				else if(ptt.instanceEvery() > 1)
-					text = "recurs every " + ptt.instanceEvery() + " days ";
-				
-			} else if(pattern instanceof DayOfWeekPattern) {
-				
-				// generate the description string for DayOfWeekPattern
-				DayOfWeekPattern ptt = (DayOfWeekPattern)pattern;
-				if(ptt.onSunday())
-					text += (text.length() == 0 ? "" : ", ") + "Sunday";
-				if(ptt.onMonday())
-					text += (text.length() == 0 ? "" : ", ") + "Monday";
-				if(ptt.onTuesday())
-					text += (text.length() == 0 ? "" : ", ") + "Tuesday";
-				if(ptt.onWednesday())
-					text += (text.length() == 0 ? "" : ", ") + "Wednesday";
-				if(ptt.onThursday())
-					text += (text.length() == 0 ? "" : ", ") + "Thursday";
-				if(ptt.onFriday())
-					text += (text.length() == 0 ? "" : ", ") + "Friday";
-				if(ptt.onSaturday())
-					text += (text.length() == 0 ? "" : ", ") + "Saturday";
-				if(text.length() > 0)
-					text = "recurs on " + text;
-			}
-			
-			// append the RecurrencePattern dateRange data
-			if(text.length() > 0)
-				text += " from " + FORMAT.format(pattern.getRange().getStartDate())
-					+ " to " + FORMAT.format(pattern.getRange().getEndDate());
-		}
-		
-		// if we've come this far and still have an empty string,
-		// either the pattern is null, or it otherwise doesn't
-		// recur.  so, set the text to reflect that, and replace
-		// whatever pattern we had with a null pattern.
-		if(text.length() == 0)
-			text = NO_RECUR;
-		
-		return text;
-	}
 	
 	public static String getDurationDescription(long ms) {
 		

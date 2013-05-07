@@ -3,7 +3,6 @@ package com.std.model.appointment;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Date;
 
@@ -101,7 +100,6 @@ public class RefAppointment extends AppointmentTemplate {
 		super();
 		setTemplate(p);
 		internalSetStartDate(d);
-		
 		notifyObservers(null);
 	}
 	

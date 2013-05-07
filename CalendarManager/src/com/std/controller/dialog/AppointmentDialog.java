@@ -9,7 +9,6 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-//import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.ButtonGroup;
@@ -31,7 +30,7 @@ import javax.swing.border.TitledBorder;
 
 import com.std.model.CalendarModel;
 import com.std.model.appointment.AppointmentTemplate;
-import com.std.model.appointment.AppointmentUtility;
+import com.std.model.appointment.RecurringAppointment;
 import com.std.model.appointment.RefAppointment;
 import com.std.model.pattern.DayOfWeekPattern;
 import com.std.model.pattern.NDaysPattern;
@@ -68,6 +67,8 @@ public class AppointmentDialog extends JDialog {
 	 * UID Used for Serializable
 	 */
 	private static final long serialVersionUID = 5613941454015423846L;
+	public static final String NO_RECUR = "does not recur";
+	
 	
 	/**
 	 * format to use when displaying date information
@@ -385,14 +386,14 @@ public class AppointmentDialog extends JDialog {
 	private void updatePatternDesc() {
 		
 		// start with a blank string
-		String text = AppointmentUtility.getPatternDescription(pattern);
+		String text = RecurringAppointment.createPatternText(pattern);
 		if(pattern != null) {
 			if(pattern instanceof NDaysPattern)
 				nDays.setSelected(true);
 			else if(pattern instanceof DayOfWeekPattern)
 				daysOfWeek.setSelected(true);
 		}
-		if(text == AppointmentUtility.NO_RECUR) {
+		if(text == NO_RECUR) {
 			pattern = null;
 			none.setSelected(true);
 		}
