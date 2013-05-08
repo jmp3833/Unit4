@@ -12,7 +12,7 @@ public abstract class AppointmentTemplate extends java.util.Observable implement
 
 	
 	private void readObject(ObjectInputStream istream) throws ClassNotFoundException, IOException {
-		internalSetStartDate((Date)istream.readObject());
+		internalSet((Date)istream.readObject());
 	}
 	
 	
@@ -34,11 +34,19 @@ public abstract class AppointmentTemplate extends java.util.Observable implement
 	private DateRange dr;
 	
 	
-	public void makeAppointment()
+	public AppointmentTemplate(Date startDate, Date endDate)
 	{
 		getFields();
 		setFields(title,description,location,duration,startDate,endDate,dr);
 	}
+	
+/*Constructor Without Start Date*/
+	public AppointmentTemplate()
+	{
+		getFields();
+		setFields(title,description,location,duration,startDate,endDate,dr);
+	}
+	
 	
 	/**
 	 * Gets all the values of the fields of the appointment
@@ -72,7 +80,7 @@ public abstract class AppointmentTemplate extends java.util.Observable implement
 		internalSetLocation(location);
 		setPattern(recPattern);
 		internalSetPattern(recPattern);
-		internalSetStartDate(startDate);
+		internalSet(startDate);
 		setEndDate(endDate);
 		setDuration(duration);
 		internalSetDuration(duration);
@@ -88,7 +96,7 @@ public abstract class AppointmentTemplate extends java.util.Observable implement
 
 	abstract Date getEndDate();
 	
-	abstract void internalSetStartDate(Date date);
+	abstract void internalSet(Date date);
 
 	abstract void setStartDate(Date date);
 

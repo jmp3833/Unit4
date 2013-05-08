@@ -477,7 +477,7 @@ public class CalendarModel extends Observable {
 			while(count-- > 0)
 				apptSet.add((RefAppointment)in.readObject());
 		}
-		this.defaultApptTmpl.makeAppointment();
+		//this.defaultApptTmpl.makeAppointment();
 		this.apptSet.clear();
 		this.apptTmplSet.clear();
 		this.apptTmplSet.addAll(apptTmplSet);
@@ -523,7 +523,7 @@ public class CalendarModel extends Observable {
 		apptTmplSet = new ObservableSet<AppointmentTemplate>();
 		apptSet = new ApptObservableSet();
 		diffFile = false;
-		defaultApptTmpl = new RefAppointment();
+		defaultApptTmpl = new RefAppointment(new Date(63,0,16), new Date(63,0,16));
 		
 		apptTmplSet.addObserver(new ApptTmplSetObserver());
 		apptTmplSet.addObserver(new SetObserver());
