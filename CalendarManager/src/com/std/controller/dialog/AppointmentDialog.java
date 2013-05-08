@@ -9,7 +9,7 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
+//import java.util.Date;
 
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
@@ -29,7 +29,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import com.std.model.CalendarModel;
-import com.std.model.appointment.AppointmentTemplate;
+//import com.std.model.appointment.AppointmentTemplate;
 import com.std.model.appointment.RecurringAppointment;
 import com.std.model.appointment.RefAppointment;
 import com.std.model.pattern.DayOfWeekPattern;
@@ -109,7 +109,7 @@ public class AppointmentDialog extends JDialog {
 	 * @return false iff the user has canceled out of the dialog
 	 */
 	public static boolean changeAppointmentDefaults(Dialog frame, CalendarModel model) {
-		AppointmentDialog dialog = new AppointmentDialog(frame, model.getCurrentDefaults());
+		AppointmentDialog dialog = new AppointmentDialog(frame);
 		dialog.setTitle("Edit Appointment Defaults");
 		dialog.setVisible(true);
 		return dialog.getReturnState();
@@ -123,7 +123,7 @@ public class AppointmentDialog extends JDialog {
 	 * @return false iff the user has canceled out of the dialog
 	 */
 	public static boolean changeAppointmentDefaults(JFrame frame, CalendarModel model) {
-		AppointmentDialog dialog = new AppointmentDialog(frame, model.getCurrentDefaults());
+		AppointmentDialog dialog = new AppointmentDialog(frame);
 		dialog.setTitle("Edit Appointment Defaults");
 		dialog.setVisible(true);
 		return dialog.getReturnState();
@@ -352,7 +352,7 @@ public class AppointmentDialog extends JDialog {
 			// create a dummy appointment so we
 			// can recieve any errors before we
 			// commit to the actual appointment
-			RefAppointment tempAppointment = new RefAppointment(new Date(0), new AppointmentTemplate("", "", "", 0));
+			RefAppointment tempAppointment = new RefAppointment();
 
 			// populate the dummy appointment
 			// with our field data
@@ -366,7 +366,7 @@ public class AppointmentDialog extends JDialog {
 			// if we've gotten this far, we're
 			// error-free, so it's safe to copy
 			// to the actual appointment
-			appt.setFields(tempAppointment);
+			//appt.setFields(tempAppointment);
 
 			// set the return state
 			this.returnState = true;
@@ -593,9 +593,9 @@ public class AppointmentDialog extends JDialog {
 	 * @param frame from which the dialog is displayed
 	 * @param appt appointment to prompt changes for
 	 */
-	private AppointmentDialog(Frame frame, AppointmentTemplate apptTmpl) {
+	private AppointmentDialog(Frame frame) {
 		super(frame, true);
-		init(new RefAppointment(new Date(), apptTmpl), false);
+		init(new RefAppointment(), false);
 	}
 	
 	/**
@@ -604,8 +604,8 @@ public class AppointmentDialog extends JDialog {
 	 * @param frame from which the dialog is displayed
 	 * @param appt appointment to prompt changes for
 	 */
-	private AppointmentDialog(Dialog frame, AppointmentTemplate apptTmpl) {
+	private AppointmentDialog(Dialog frame) {
 		super(frame, true);
-		init(new RefAppointment(new Date(), apptTmpl), false);
+		init(new RefAppointment(), false);
 	}
 }

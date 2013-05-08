@@ -122,9 +122,10 @@ public class CalendarModel extends Observable {
 	     *         prevents it from being added to this set
 	     * @see <a href="http://java.sun.com/javase/6/docs/api/java/util/Set.html#add(E)">Set<U>.add(U)</a>
 	     */
+		
 		public boolean add(RefAppointment appt) {
-			if(!apptTmplSet.contains(appt.getTemplate()))
-				throw new IllegalArgumentException("template does not exist or has not been added");
+			//if(!apptTmplSet.contains(appt.getTemplate()))
+				//throw new IllegalArgumentException("template does not exist or has not been added");
 			return super.add(appt);
 		}
 
@@ -154,9 +155,9 @@ public class CalendarModel extends Observable {
 		public boolean addAll(Collection<? extends RefAppointment> c) {
 			if(c == null)
 				throw new NullPointerException("c");
-			for(RefAppointment appt : c)
-				if(!apptTmplSet.contains(appt.getTemplate()))
-					throw new IllegalArgumentException("template does not exist or has not been added");
+			//for(RefAppointment appt : c)
+				//if(!apptTmplSet.contains(appt.getTemplate()))
+					//throw new IllegalArgumentException("template does not exist or has not been added");
 			return super.addAll(c);
 		}
 
@@ -310,7 +311,11 @@ public class CalendarModel extends Observable {
 	/**
 	 * the default parameters for new appointment templates
 	 */
-	private final AppointmentTemplate defaultApptTmpl;
+	private RefAppointment defaultApptTmpl;
+
+	private ObjectOutputStream out;
+
+	private ObjectInputStream in;
 
 	/**
 	 * removes all RefAppointments from the set of all RefAppointments whose
@@ -321,9 +326,9 @@ public class CalendarModel extends Observable {
 	public void removeReferences(AppointmentTemplate apptTmpl) {
 		Iterator<RefAppointment> iter = apptSet.iterator();
 		while(iter.hasNext()) {
+			@SuppressWarnings("unused")
 			RefAppointment appt = iter.next();
-			if(appt.getTemplate() == apptTmpl)
-				iter.remove();
+			iter.remove();
 		}
 	}
 
@@ -419,24 +424,13 @@ public class CalendarModel extends Observable {
 		return diffFile;
 	}
 	
-	/**
-	 * Returns a new AppointmentTemplate containing the default defaults
-	 * 
-	 * @return a new AppointmentTemplate containing the default defaults
-	 */
-	private AppointmentTemplate getNewDefaults() {
-		return new AppointmentTemplate("New Appointment", "", "n/a", 0);
+
+	@SuppressWarnings("unused")
+	private RefAppointment getNewDefaults() {
+		return new RefAppointment();
 	}
 
-	/**
-	 * Returns a AppointmentTemplate containing the current defaults
-	 * 
-	 * @return a AppointmentTemplate containing the current defaults
-	 */
-	public AppointmentTemplate getCurrentDefaults() {
-		return defaultApptTmpl;
-	}
-	
+
 	/**
 	 * saves the data model to a file specified by the passed URI 
 	 * parameter, and notifies any CalendarModel observers
@@ -448,7 +442,7 @@ public class CalendarModel extends Observable {
 	public void save(File file) throws IOException {
 		if(file == null)
 			throw new NullPointerException("file");
-		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));
+		out = new ObjectOutputStream(new FileOutputStream(file));
 		out.writeObject(defaultApptTmpl);
 		out.writeInt(apptTmplSet.size());
 		for(AppointmentTemplate apptTmpl : apptTmplSet)
@@ -470,20 +464,20 @@ public class CalendarModel extends Observable {
 	 * @throws IOException if an I/O error occurs while writing stream header
 	 */
 	public void load(File file) throws IOException, ClassNotFoundException {
-		Set<AppointmentTemplate> apptTmplSet = new HashSet<AppointmentTemplate>();
+		//Set<AppointmentTemplate> apptTmplSet = new HashSet<AppointmentTemplate>();
 		Set<RefAppointment> apptSet = new HashSet<RefAppointment>();
-		AppointmentTemplate defaultApptTmpl = getNewDefaults();
+		//AppointmentTemplate defaultApptTmpl = getNewDefaults();
 		if(file != null) {
-			ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
-			defaultApptTmpl = (AppointmentTemplate)in.readObject();
+			in = new ObjectInputStream(new FileInputStream(file));
+			defaultApptTmpl = (RefAppointment)in.readObject();
 			int count = in.readInt();
 			while(count-- > 0)
-				apptTmplSet.add((AppointmentTemplate)in.readObject());
+				apptTmplSet.add((RefAppointment)in.readObject());
 			count = in.readInt();
 			while(count-- > 0)
 				apptSet.add((RefAppointment)in.readObject());
 		}
-		this.defaultApptTmpl.setFields(defaultApptTmpl);
+		this.defaultApptTmpl.makeAppointment();
 		this.apptSet.clear();
 		this.apptTmplSet.clear();
 		this.apptTmplSet.addAll(apptTmplSet);
@@ -529,7 +523,7 @@ public class CalendarModel extends Observable {
 		apptTmplSet = new ObservableSet<AppointmentTemplate>();
 		apptSet = new ApptObservableSet();
 		diffFile = false;
-		defaultApptTmpl = getNewDefaults();
+		defaultApptTmpl = new RefAppointment();
 		
 		apptTmplSet.addObserver(new ApptTmplSetObserver());
 		apptTmplSet.addObserver(new SetObserver());

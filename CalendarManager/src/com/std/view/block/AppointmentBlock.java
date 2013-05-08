@@ -5,13 +5,13 @@ package com.std.view.block;
 
 import java.awt.BorderLayout;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+//import java.util.Calendar;
 
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.border.EtchedBorder;
 
-import com.std.model.appointment.AppointmentTemplate;
+//import com.std.model.appointment.AppointmentTemplate;
 import com.std.model.appointment.RefAppointment;
 /**
  * Class that is used to write 
@@ -21,6 +21,11 @@ import com.std.model.appointment.RefAppointment;
  */
 public class AppointmentBlock extends JTextArea {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private boolean limitDisplay;
 	
 	private static final SimpleDateFormat FORMAT = new SimpleDateFormat("h:mm aa");
@@ -72,9 +77,9 @@ public class AppointmentBlock extends JTextArea {
 	
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
-		AppointmentTemplate template = new AppointmentTemplate("My Temp", "This is an appointment", "Here", 1000*60*60*2);
+		//AppointmentTemplate template = new AppointmentTemplate("My Temp", "This is an appointment", "Here", 1000*60*60*2);
 		
-		RefAppointment ref = new RefAppointment(Calendar.getInstance().getTime(), template);
+		RefAppointment ref = new RefAppointment();
 		
 		AppointmentBlock b = new AppointmentBlock(ref, false);
 		frame.add(b, BorderLayout.CENTER);

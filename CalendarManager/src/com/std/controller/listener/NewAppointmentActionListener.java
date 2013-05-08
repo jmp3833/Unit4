@@ -31,11 +31,11 @@ public class NewAppointmentActionListener implements ActionListener {
 	 */
 	
 	public void actionPerformed(ActionEvent e) {
-		RefAppointment ref = CalendarModelUtility.getNewAppointment(controller.getModel());
+		RefAppointment ref = new RefAppointment() ;
 		
-		if(AppointmentDialog.changeAppointment(controller.getView(), ref)) {
-			CalendarModelUtility.addUsingPattern(controller.getModel(), ref);
+		//if(AppointmentDialog.changeAppointment(controller.getView(), ref)) {
+			//CalendarModelUtility.addUsingPattern(controller.getModel(), ref);
 		}
 	}
 
-}
+

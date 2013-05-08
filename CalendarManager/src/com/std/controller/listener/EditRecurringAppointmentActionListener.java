@@ -40,7 +40,7 @@ public class EditRecurringAppointmentActionListener implements ActionListener {
 		if(ref != null) {
 			AppointmentDialog.changeAppointment(controller.getView(), ref);
 			
-			CalendarModelUtility.addUsingPattern(controller.getModel(), ref);
+			//CalendarModelUtility.addUsingPattern(controller.getModel(), ref);
 		} else
 			JOptionPane.showMessageDialog(controller.getView(), "no appointment is selected", "", JOptionPane.ERROR_MESSAGE);
 	}

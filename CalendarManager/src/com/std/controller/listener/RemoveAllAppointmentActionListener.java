@@ -48,7 +48,7 @@ public class RemoveAllAppointmentActionListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		RefAppointment ref = controller.getModel().getCurrentAppointment();
 		if(ref != null)
-			controller.getModel().getAppointmentTemplateSet().remove(ref.getTemplate());
+			controller.getModel().getAppointmentTemplateSet().remove(ref);
 		else
 			JOptionPane.showMessageDialog(controller.getView(), "no appointment is selected", "", JOptionPane.ERROR_MESSAGE);
 	}

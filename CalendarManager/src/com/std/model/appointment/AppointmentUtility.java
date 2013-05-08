@@ -36,9 +36,9 @@ public class AppointmentUtility {
 		TreeSet<RefAppointment> endSet = new TreeSet<RefAppointment>(RefAppointment.COMPARATOR_APPOINTMENT_END);
 		endSet.addAll(set);
 		
-		AppointmentTemplate apptTmpl = new AppointmentTemplate("", "", "", 0);
-		RefAppointment startAppt = new RefAppointment(range.getStartDate(), apptTmpl);
-		RefAppointment endAppt = new RefAppointment(range.getEndDate(), apptTmpl);
+		//AppointmentTemplate apptTmpl = new AppointmentTemplate("", "", "", 0);
+		RefAppointment startAppt = new RefAppointment();
+		RefAppointment endAppt = new RefAppointment();
 		
 		SortedSet<RefAppointment> ret = startSet.headSet(endAppt);
 		ret.removeAll(endSet.headSet(startAppt));
@@ -61,7 +61,7 @@ public class AppointmentUtility {
 		Set<RefAppointment> ret = new HashSet<RefAppointment>();
 		if(apptTmpl.getPattern() != null)
 			for(Date date : apptTmpl.getPattern().getDates())
-				ret.add(new RefAppointment(date, apptTmpl));
+				ret.add(new RefAppointment());
 		
 		return ret;
 	}

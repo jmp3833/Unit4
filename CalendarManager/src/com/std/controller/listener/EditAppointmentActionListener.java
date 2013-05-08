@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 import com.std.controller.CalendarController;
 import com.std.controller.dialog.AppointmentDialog;
 import com.std.model.CalendarModelUtility;
-import com.std.model.appointment.AppointmentTemplate;
+//import com.std.model.appointment.AppointmentTemplate;
 import com.std.model.appointment.RefAppointment;
 
 public class EditAppointmentActionListener implements ActionListener {
@@ -39,9 +39,9 @@ public class EditAppointmentActionListener implements ActionListener {
 		RefAppointment ref = controller.getModel().getCurrentAppointment();
 		if(ref != null) {
 			if(ref.getPattern() != null) {
-				AppointmentTemplate apptTmpl = (AppointmentTemplate)ref.getTemplate().clone();
-				apptTmpl.setPattern(null);
-				RefAppointment appt = new RefAppointment(ref.getStartDate(), apptTmpl);
+				//AppointmentTemplate apptTmpl = (AppointmentTemplate)ref.getTemplate().clone();
+				//apptTmpl.setPattern(null);
+				RefAppointment appt = new RefAppointment();
 				
 				if(AppointmentDialog.changeAppointment(controller.getView(), appt)) {
 					controller.getModel().getAppointmentSet().remove(ref);

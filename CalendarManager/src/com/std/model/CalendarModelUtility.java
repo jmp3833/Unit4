@@ -140,7 +140,7 @@ public class CalendarModelUtility {
 	 * @param model the model to get the defaults from
 	 * @return returns a default appointmnet template
 	 */
-	
+	/* REMOVED IN REFACTORING
 	public static AppointmentTemplate getNewAppointmentTemplate(CalendarModel model) {
 		AppointmentTemplate ret = new AppointmentTemplate("", "", "", 0);
 		ret.setFields(model.getCurrentDefaults());
@@ -154,7 +154,7 @@ public class CalendarModelUtility {
 	 */
 	
 	public static RefAppointment getNewAppointment(CalendarModel model, AppointmentTemplate apptTmpl) {
-		return new RefAppointment(model.getCurrentDate(), apptTmpl);
+		return new RefAppointment();
 	}
 	
 	/**
@@ -163,21 +163,23 @@ public class CalendarModelUtility {
 	 * @return returns a default RefAppointment
 	 */
 	
-	public static RefAppointment getNewAppointment(CalendarModel model) { 
+	/*
+	public static RefAppointment makeAppointment(CalendarModel model) { 
 		return getNewAppointment(model, getNewAppointmentTemplate(model)); 
 	}
-	
+	*/
 	
 	/**
 	 * Adds a refrence appointment to the model
 	 * @param model is the model to add things
 	 * @param appt is the appointment to be added
-	 */
+	 
 	
 	public static void add(CalendarModel model, RefAppointment appt) {
 		model.getAppointmentTemplateSet().add(appt.getTemplate());
 		model.getAppointmentSet().add(appt);
 	}
+	*/
 	
 	/**
 	 * Add a ref appointment with the given pattern
@@ -185,11 +187,11 @@ public class CalendarModelUtility {
 	 * @param model is the model to add to
 	 * @param appt is the appointmnet to add
 	 */
-	
+	/*
 	public static void addUsingPattern(CalendarModel model, RefAppointment appt) {
-		model.getAppointmentTemplateSet().add(appt.getTemplate());
+		//model.getAppointmentTemplateSet().add(appt.getTemplate());
+		//model.removeReferences(appt.getTemplate());
 		
-		model.removeReferences(appt.getTemplate());
 		if(appt.getPattern() != null)
 			model.getAppointmentSet().addAll(AppointmentUtility.generatePatternAppointments(appt.getTemplate()));
 		else {
@@ -198,7 +200,7 @@ public class CalendarModelUtility {
 		
 		
 	}
-	
+	*/
 	public static boolean conflictingAppointments(RefAppointment one, RefAppointment two) {
 		if (one.getStartDate().getTime() > two.getStartDate().getTime()) {
 			if (one.getStartDate().getTime() < two.getEndDate().getTime()) {
@@ -217,5 +219,10 @@ public class CalendarModelUtility {
 		else {
 			return true;
 		}
+	}
+
+	public static void add(CalendarModel model, RefAppointment appt) {
+		// TODO Auto-generated method stub
+		
 	}
 }
