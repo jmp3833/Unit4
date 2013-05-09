@@ -54,8 +54,6 @@ public class RefAppointment extends AppointmentTemplate {
 		// set the end comparator
 		COMPARATOR_APPOINTMENT_END = new Comparator<RefAppointment>() {
 			public int compare(RefAppointment o1, RefAppointment o2) {
-				System.out.println(o1);
-				System.out.println(o2);
 				if(o1.getEndDate() != null && o2.getEndDate() != null){
 					int ret = o1.getEndDate().compareTo(o2.getEndDate());
 					if(ret == 0 && !o1.equals(o2))
@@ -76,7 +74,6 @@ public class RefAppointment extends AppointmentTemplate {
 	}
 	
 	public void internalSet(Date date){
-		System.out.println("Im Being called, the date is:" + date);
 		if(date == null)
 			throw new NullPointerException("date");
 		if(!date.equals(this.startDate))
