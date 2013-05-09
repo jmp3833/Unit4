@@ -24,9 +24,9 @@ public abstract class AppointmentTemplate extends java.util.Observable implement
 	 * UID Used for Serializable
 	 */
 	private static final long serialVersionUID = 8219757873492578630L;
-	private String title;
-	private String description;
-    private String location;
+	private String title = "";
+	private String description = "";
+    private String location = "";
 	private long duration;
 	private RecurrencePattern recPattern;
 	private Date startDate;
